@@ -13,11 +13,12 @@ interface DetailStaffProps {
 }
 
 const DetailStaff: React.FC<DetailStaffProps> = ({ onClose, dataInitial, reload }) => {
+  const keyNotEdit = ["ProductId"]
   const [isShaking, setIsShaking] = useState(false);
   const notificationRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(true);
   const [data, setData] = useState<any>(dataInitial);
-  const [updateData, setupdateData] = useState<any>({});
+  const [updateData, setupdateData] = useState<any>(dataInitial);
   const filterData =[
     {id: 0, name: "Thông tin", value: "details"},
 		{id: 1, name: "Giá mua vào", value: "costHist"},
@@ -45,7 +46,9 @@ const DetailStaff: React.FC<DetailStaffProps> = ({ onClose, dataInitial, reload 
       }, 300);
     }
   };
-
+  // useEffect(()=>{
+  //   console.log(dataInitial)
+  // },[])
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
 
@@ -102,29 +105,30 @@ const DetailStaff: React.FC<DetailStaffProps> = ({ onClose, dataInitial, reload 
   const handleEditClick = () => {
     setIsEditing(true);
   };
-  // const handleSaveClick = async () => {
-  //   // Gửi API về server để cập nhật dữ liệu
-  //   // Sau khi hoàn thành, có thể tắt chế độ chỉnh sửa
-  //   // Gửi API về server để cập nhật dữ liệu
-  //   // Sau khi hoàn thành, có thể tắt chế độ chỉnh sửa
-  //   const myToken: token = {
-  //     token: cookie.get("token"),
-  //   };
-  //   const condition: StudentID = {student_id: dataInitial.student_id }
-  //   const staff =new StudentOperation()
-  //   setIsEditing(false);
-  //   const res =await staff.updateByAdmin(updateData, condition, myToken )
-  //   reload()
-  //   if (res?.error)
-  //     {
-  //       alert(res?.error?.message)
-  //     }
-  //   else 
-  //   {
-  //     alert(res?.message);
-  //     reload()
-  //   }
-  // };
+  const handleSaveClick = async () => {
+    // Gửi API về server để cập nhật dữ liệu
+    // Sau khi hoàn thành, có thể tắt chế độ chỉnh sửa
+    // Gửi API về server để cập nhật dữ liệu
+    // Sau khi hoàn thành, có thể tắt chế độ chỉnh sửa
+    const staff =new ProductOperation()
+    setIsEditing(false);
+    updateData.ProductLine = updateData.ProductLine.trim();
+    updateData.Class = updateData.Class.trim();
+    updateData.Style = updateData.Style.trim();
+    updateData.SizeUnitMeasureCode =  updateData.SizeUnitMeasureCode.trim()
+    updateData.WeightUnitMeasureCode=  updateData.WeightUnitMeasureCode.trim()
+    const res =await staff.update(dataInitial.ProductID, updateData)
+    reload()
+    if (res?.success)
+      {
+        alert(res?.message)
+      }
+    else 
+    {
+      alert(res?.message);
+      reload()
+    }
+  };
 
   const traverse = (obj, isEditing, canEdit?) => {
   
@@ -148,7 +152,7 @@ const DetailStaff: React.FC<DetailStaffProps> = ({ onClose, dataInitial, reload 
                 type="text"
                 value={obj[key]}
                 onChange={(e) => {
-                  setData({ ...obj, [key]: e.target.value });
+                  setData({ ...obj, [key]: e.target.value});
                   handleUpdateData(e, key);
                 }}
               />
@@ -157,7 +161,7 @@ const DetailStaff: React.FC<DetailStaffProps> = ({ onClose, dataInitial, reload 
             )}
           </div>
         );
-        if (true) {
+        if (key != "ProductID") {
           editableElements.push(element);
         } else {
           nonEditableElements.push(element);
@@ -326,7 +330,7 @@ const DetailStaff: React.FC<DetailStaffProps> = ({ onClose, dataInitial, reload 
               className="w-full rounded-lg mt-5 mb-1 py-3 border-green-700 hover:bg-green-700 text-green-500
               bg-transparent drop-shadow-md hover:drop-shadow-xl hover:text-white border 
               hover:shadow-md"
-              onClick={()=>{}}
+              onClick={()=>{handleSaveClick()}}
             >
               <FaPen className="xs:mr-2" />
               <span className="hidden xs:block">

@@ -516,19 +516,16 @@ export class ProductOperation {
             return { success: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
 		}
     }
-    async update(id: UUID, payload: UpdateFullQuiz, token: string) {
+    async update(id: UUID, payload: any) {
         try {       
 			
-			const formData = new FormData();
-            formData.append('file', payload.file);
-            formData.append('data', JSON.stringify(payload.data));
+			// const formData = new FormData();
+            // formData.append('file', payload.file);
+            // formData.append('data', JSON.stringify(payload.data));
 			
-			const response: AxiosResponse = await axios.put(`${this.baseUrl}/update/${id}?${this.langQuery}`, formData, {
+			const response: AxiosResponse = await axios.put(`${this.baseUrl}/update/${id}`, payload, {
 				withCredentials: true,
                 validateStatus: status => status >= 200 && status <= 500,
-                headers: {
-                    Authorization: `Bearer ${token}`
-                },
 			});
 		
 			return {
@@ -539,9 +536,10 @@ export class ProductOperation {
             };
 	
 		} catch (error: any) {
-			console.error("Request that caused the error: ", error?.request);
+			console.log("Error updating account: ", error?.response?.data);
+            console.error("Request that caused the error: ", error?.request);
             return { success: error?.response?.data, request: error?.request, status: error.response ? error.response.status : null };
-		} 
+		}
     }
 
     async delete(id: UUID, token: string) {
