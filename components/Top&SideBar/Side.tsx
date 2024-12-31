@@ -111,7 +111,7 @@ export default function Side({menuItems, toggleCollapse }) {
         </div>
       </div>
 
-      <div className={`${getNavItemClasses({})}`}>
+      {/* <div className={`${getNavItemClasses({})}`}>
         <button
         onClick={() => Logout(router)}
         className="flex py-4 px-3 items-center w-full h-full text-white hover:bg-gray-200/70 dark:hover:bg-gray-200/70 hover:text-[#e1201c]">
@@ -128,7 +128,7 @@ export default function Side({menuItems, toggleCollapse }) {
             </span>
           )}
         </button>
-      </div>
+      </div> */}
     </div>
     </>
   );

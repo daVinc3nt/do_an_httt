@@ -266,7 +266,7 @@ const DetailStaff: React.FC<DetailStaffProps> = ({ onClose, dataInitial, reload 
       >
         <div className="relative items-center justify-center flex-col flex h-10 w-full border-b-2 border-[#545e7b]">
           <div className="font-bold text-lg sm:text-2xl pb-2 text-black dark:text-white w-full text-center">
-            Thông tin 3
+            Products information
           </div>
 
             <IoMdClose className=" absolute right-0 w-8 h-8 cursor-pointer

@@ -214,6 +214,7 @@ const AddStaff: React.FC<AddStaffProps> = ({ onClose, reload }) => {
               <div className="flex gap-3 mt-3">
               <input required
                   type="number"
+                  min="0"
                   className="text-xs md:text-sm border border-gray-600 rounded  bg-white dark:bg-[#14141a] h-10 p-2 w-full"
                   placeholder={"Standard cost"}
                   value={Productdata.StandardCost}
@@ -222,6 +223,7 @@ const AddStaff: React.FC<AddStaffProps> = ({ onClose, reload }) => {
                 
                 <input required
                   type="number"
+                  min="0"
                   className="text-xs md:text-sm border border-gray-600 rounded  bg-white dark:bg-[#14141a] h-10 p-2 w-full"
                   placeholder={"Reorder point"}
                   value={Productdata.ReorderPoint}
@@ -230,6 +232,7 @@ const AddStaff: React.FC<AddStaffProps> = ({ onClose, reload }) => {
                 
                 <input required
                   type="number"
+                  min="0"
                   className="text-xs md:text-sm border border-gray-600 rounded  bg-white dark:bg-[#14141a] h-10 p-2 w-full"
                   placeholder={"Safe stock level"}
                   value={Productdata.SafetyStockLevel}
@@ -257,6 +260,7 @@ const AddStaff: React.FC<AddStaffProps> = ({ onClose, reload }) => {
               <div className="flex gap-3 mt-3">               
                 <input required
                   type="number"
+                  min="0"
                   className="text-xs md:text-sm border border-gray-600 rounded  bg-white dark:bg-[#14141a] h-10 p-2 w-full"
                   placeholder={"Weight"}
                   value={Productdata.Weight}
@@ -304,6 +308,7 @@ const AddStaff: React.FC<AddStaffProps> = ({ onClose, reload }) => {
               <div className="flex gap-3 mt-3">
                 <input required 
                   type="number"
+                  min="0"
                   className="text-xs md:text-sm border border-gray-600 rounded  bg-white dark:bg-[#14141a] h-10 p-2 w-full"
                   placeholder={"Days to manufacture"}
                   value={Productdata.DaysToManufacture}
@@ -313,6 +318,7 @@ const AddStaff: React.FC<AddStaffProps> = ({ onClose, reload }) => {
                 />
                 <input required
                   type="number"
+                  min="0"
                   className={`text-xs md:text-sm border border-gray-600 rounded bg-white  dark:bg-[#14141a] h-10 p-2 w-full
                   `}
                   placeholder={"List price"}
