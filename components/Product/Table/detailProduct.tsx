@@ -112,9 +112,9 @@ const DetailStaff: React.FC<DetailStaffProps> = ({ onClose, dataInitial, reload 
     // Sau khi hoàn thành, có thể tắt chế độ chỉnh sửa
     const staff =new ProductOperation()
     setIsEditing(false);
-    updateData.ProductLine = updateData.ProductLine.trim();
-    updateData.Class = updateData.Class.trim();
-    updateData.Style = updateData.Style.trim();
+    updateData.ProductLine = updateData?.ProductLine?.trim();
+    updateData.Class = updateData?.Class?.trim();
+    updateData.Style = updateData?.Style?.trim();
     updateData.SizeUnitMeasureCode =  updateData.SizeUnitMeasureCode.trim()
     updateData.WeightUnitMeasureCode=  updateData.WeightUnitMeasureCode.trim()
     const res =await staff.update(dataInitial.ProductID, updateData)
